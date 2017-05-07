@@ -276,7 +276,7 @@ You have to know your <code>project_id</code>.
 <td>JSON Hash object of name locales</td>
 </tr>
 <tr>
-<td>Intencity</td>
+<td>Intensity</td>
 <td>Integer</td>
 <td>Integer value from [0,1,2] as 0 is low, 1 is medium and 2 is high</td>
 </tr>
@@ -286,9 +286,9 @@ You have to know your <code>project_id</code>.
 <td>number of minutes</td>
 </tr>
 <tr>
-<td>muscles</td>
+<td>musclesGroups</td>
 <td>Array</td>
-<td>muscles objects</td>
+<td>musclesGroups objects</td>
 </tr>
 <tr>
 <td>Machines</td>
@@ -525,6 +525,169 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
 <aside class="notice">
 Any parameter from training program object
 </aside>
+
+<h1 id="training-machines">Training Machines</h1>
+
+<h2 id="training-machine-object">Training Machine Object</h2>
+
+<p>This is the JSON content of the returned training machine object</p>
+
+<h3 id="training-machine-attributes">Training machine attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Training machine ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Hash</td>
+<td>JSON Hash object of name locales { en: &hellip;, ar: &hellip;, &hellip;.}</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Hash</td>
+<td>JSON Hash object of name locales</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Location</td>
+<td>Location object is a hash { floor: FLOOR_ID, X: X_COORDINATE, y: y_COORDINATE }</td>
+</tr>
+<tr>
+<td>musclesGroups</td>
+<td>Array</td>
+<td>musclesGroup objects</td>
+</tr>
+<tr>
+<td>images</td>
+<td>Arary</td>
+<td>Images objects</td>
+</tr>
+</tbody></table>
+
+<h1 id="musclesgroupcategory">MusclesGroupCategory</h1>
+
+<h2 id="musclesgroupcategory-object">MusclesGroupCategory Object</h2>
+
+<p>This is the JSON content of the returned Muscles group category object</p>
+
+<h3 id="muscle-attributes">muscle attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Training machine ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>category for muscle group (e.g. leg, back, &hellip;)</td>
+</tr>
+</tbody></table>
+
+<h1 id="muscles-group">Muscles Group</h1>
+
+<h2 id="musclesgroup-object">MusclesGroup Object</h2>
+
+<p>This is the JSON content of the returned muscles group object</p>
+
+<h3 id="muscles-group-attributes">muscles group attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Training machine ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Hash</td>
+<td>JSON Hash object of name locales { en: &hellip;, ar: &hellip;, &hellip;.}</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Hash</td>
+<td>JSON Hash object of name locales</td>
+</tr>
+<tr>
+<td>MusclesGroupCategoryId</td>
+<td>String</td>
+<td>the id of the category of this musclesGroup</td>
+</tr>
+<tr>
+<td>muscles</td>
+<td>Array</td>
+<td>Muscles objects</td>
+</tr>
+<tr>
+<td>images</td>
+<td>Arary</td>
+<td>Images objects</td>
+</tr>
+</tbody></table>
+
+<h1 id="muscle">Muscle</h1>
+
+<h2 id="muscle-object">Muscle Object</h2>
+
+<p>This is the JSON content of the returned muscles group object</p>
+
+<h3 id="muscle-attributes">muscle attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Training machine ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Hash</td>
+<td>JSON Hash object of name locales { en: &hellip;, ar: &hellip;, &hellip;.}</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Hash</td>
+<td>JSON Hash object of name locales</td>
+</tr>
+<tr>
+<td>musclesGroups</td>
+<td>Array</td>
+<td>list of all musclesGroups, the current muscle related to.</td>
+</tr>
+<tr>
+<td>images</td>
+<td>Arary</td>
+<td>Images objects</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
