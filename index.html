@@ -245,7 +245,7 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
 You have to know your <code>project_id</code>.
 </aside>
 
-<h1 id="trainging-programs">Trainging Programs</h1>
+<h1 id="training-programs">Training Programs</h1>
 
 <h2 id="training-program-object">Training Program Object</h2>
 
@@ -277,27 +277,17 @@ You have to know your <code>project_id</code>.
 </tr>
 <tr>
 <td>Intensity</td>
-<td>Integer</td>
-<td>Integer value from [0,1,2] as 0 is low, 1 is medium and 2 is high</td>
+<td>intensity</td>
+<td>intensity object with those values [name: localizatedText (Hash), enumIndex: integer]</td>
 </tr>
 <tr>
-<td>Duration</td>
-<td>Integer</td>
-<td>number of minutes</td>
-</tr>
-<tr>
-<td>musclesGroups</td>
-<td>Array</td>
-<td>musclesGroups objects</td>
-</tr>
-<tr>
-<td>Machines</td>
-<td>Arary</td>
-<td>Machines objects</td>
+<td>exercises</td>
+<td>Array[Exercise]</td>
+<td>array of all exercise included in this program</td>
 </tr>
 </tbody></table>
 
-<h2 id="get-list-training-programs">Get: List Training Programs</h2>
+<h2 id="get-list-training-programs">GET: List Training Programs</h2>
 <pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
 
 URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings'</span>
@@ -310,40 +300,20 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1_description"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25 mins"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"intencity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"muscles"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscle_name"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image-url"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}],</span><span class="w">
-    </span><span class="s2">"machines"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Machine#1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Machine#1 Desctiption"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Locaiton"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"muscles"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscle_name"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image-url"</span><span class="w">
-        </span><span class="p">}],</span><span class="w">
-        </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-          </span><span class="s2">""</span><span class="w">
-        </span><span class="p">}]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">""</span><span class="w">
+    </span><span class="s2">"exercises"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3df3234s3"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Machine#1 Desctiption"</span><span class="w">
     </span><span class="p">}],</span><span class="w">
   </span><span class="p">{</span><span class="w">
       </span><span class="err">.........</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>List all of all venue trainging prograns.</p>
+<p>List all of all venue training prograns.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -365,9 +335,9 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
 </tr>
 </tbody></table>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all taining programs.</p>
 
-<h2 id="get-retrieve-training-programs">GET: Retrieve Training Programs</h2>
+<h2 id="get-retrieve-training-program">GET: Retrieve Training Program</h2>
 <pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
 
 URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id'</span>
@@ -383,7 +353,7 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1_description"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25 mins"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"intencity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"muscles"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"musclesGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscle_name"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -478,8 +448,8 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
 </tr>
 </tbody></table>
 
-<h2 id="patch-update-training-programs">PATCH: Update Training Programs</h2>
-<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'PATCH'</span>
+<h2 id="put-update-training-programs">PUT: Update Training Programs</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'PUT'</span>
 
 URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id'</span>
 
@@ -493,11 +463,11 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"program 29622362 has been deleted."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Update or patch training program by id.</p>
+<p>Update or PUT training program by id.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PATCH http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id</code></p>
+<p><code class="prettyprint">PUT http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id</code></p>
 
 <h3 id="url-parameters">URL parameters</h3>
 
@@ -520,19 +490,126 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
 </tr>
 </tbody></table>
 
-<h3 id="query-parameters">Query parameters</h3>
-
 <aside class="notice">
 Any parameter from training program object
 </aside>
 
-<h1 id="training-machines">Training Machines</h1>
+<h2 id="get-all-taining-programs">GET: All taining programs</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
 
-<h2 id="training-machine-object">Training Machine Object</h2>
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/all_taining_program'</span>
 
-<p>This is the JSON content of the returned training machine object</p>
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"intencity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exercises"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3df3234s3"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1 desctiption"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"machine"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"primeMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"secondaryMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"stabilizerMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"coreMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"behavior"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reps_with_weight"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"repetitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">           
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="err">.........</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>List all of all venue training programs.</p>
 
-<h3 id="training-machine-attributes">Training machine attributes</h3>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/all_taining_program</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+This request mainly used from the mobile side to encapsulate all data in one object
+</aside>
+
+<h1 id="exercise">Exercise</h1>
+
+<h2 id="exercise-object">Exercise Object</h2>
+
+<p>This is the JSON content of the returned exercise object</p>
+
+<h3 id="exercise-attributes">Exercise attributes</h3>
 
 <table><thead>
 <tr>
@@ -557,29 +634,370 @@ Any parameter from training program object
 <td>JSON Hash object of name locales</td>
 </tr>
 <tr>
-<td>Location</td>
-<td>Location</td>
-<td>Location object is a hash { floor: FLOOR_ID, X: X_COORDINATE, y: y_COORDINATE }</td>
+<td>machine</td>
+<td>Machine</td>
+<td>the machine used in this exercise</td>
 </tr>
 <tr>
-<td>musclesGroups</td>
-<td>Array</td>
-<td>musclesGroup objects</td>
+<td>primeMoverMuscle</td>
+<td>muscle</td>
+<td>muscle objects</td>
 </tr>
 <tr>
-<td>images</td>
-<td>Arary</td>
-<td>Images objects</td>
+<td>secondaryMoverMuscle</td>
+<td>muscle</td>
+<td>muscle objects</td>
+</tr>
+<tr>
+<td>stabilizerMuscle</td>
+<td>muscle</td>
+<td>muscle objects</td>
+</tr>
+<tr>
+<td>coreMuscle</td>
+<td>muscle</td>
+<td>muscle objects</td>
+</tr>
+<tr>
+<td>photoURL</td>
+<td>String</td>
+<td>url of the exercise image</td>
+</tr>
+<tr>
+<td>behavior</td>
+<td>Hash</td>
+<td>embedded object of those keys: [type, reps]. Type key will be one of the 3 values [reps_with_weight, duration, reps_without_weight] and Reps key, its value is an array of this object {&ldquo;reps&rdquo;: Integer_value, &ldquo;weight&rdquo;: Integer_value}</td>
 </tr>
 </tbody></table>
 
-<h1 id="musclesgroupcategory">MusclesGroupCategory</h1>
+<h2 id="get-list-of-exercise-for-a-certain-training-program">GET: List of exercise for a certain Training Program</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
 
-<h2 id="musclesgroupcategory-object">MusclesGroupCategory Object</h2>
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id/exercises'</span>
 
-<p>This is the JSON content of the returned Muscles group category object</p>
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3df3234s3"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1 desctiption"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"machine"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"primeMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"secondaryMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"stabilizerMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"coreMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"behavior"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reps_with_weight"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"repetitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">           
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span></code></pre>
+<p>List all of all training program exercises.</p>
 
-<h3 id="muscle-attributes">muscle attributes</h3>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id/exercises</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>training_id</td>
+<td>String</td>
+<td>training program id, the owner of the exercises</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves all exercises in this training program.</p>
+
+<h2 id="get-retrieve-a-certain-exercise">GET: Retrieve a certain exercise</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id/exercises/:exercise_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3df3234s3"</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1 desctiption"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"machine"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"primeMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"secondaryMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"stabilizerMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"coreMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"behavior"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reps_with_weight"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"repetitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">           
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieve training program by its id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id/exercises/:exercise_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>training_id</td>
+<td>String</td>
+<td>Training program id, the owner of the exercises</td>
+</tr>
+<tr>
+<td>exercise_id</td>
+<td>String</td>
+<td>id of the requested exercise</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-delete-exercise">DELETE: DELETE Exercise</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'DELETE'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise 29622362 has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Delete training program by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id/exercises/:exercise_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>training_id</td>
+<td>String</td>
+<td>Training program id, the owner of the exercises</td>
+</tr>
+<tr>
+<td>exercise_id</td>
+<td>String</td>
+<td>id of the requested exercise</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-update-exercise">PUT: Update Exercise</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'PUT'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id/exercises/:exercise_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+PARAMS
+
+<span class="o">{</span> 
+  <span class="s2">"exercise"</span>: <span class="o">{</span> 
+    <span class="s2">"id"</span>: <span class="s2">"23232323"</span>, 
+    <span class="s2">"name"</span>: <span class="o">{</span> <span class="o">}</span>, 
+    ...., 
+    <span class="s2">"photoURL"</span>: <span class="s2">"http://www.images.com/image2.png"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1 desctiption"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image2.png"</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Update or PUT exercise by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://api.venueSolutions.com/spa/v1/projects/:project_id/trainings/:training_id/exercises/:exercise_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>training_id</td>
+<td>String</td>
+<td>Training program id, the owner of the exercises</td>
+</tr>
+<tr>
+<td>exercise_id</td>
+<td>String</td>
+<td>id of the requested exercise</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<p><code class="prettyprint">params = { &quot;exercise&quot;: { &quot;id&quot;: &quot;23232323&quot;, &quot;name&quot;: { }, ...., &quot;photoURL&quot;: &quot;http://...&quot;}}</code></p>
+
+<aside class="notice">
+Embedded the new object in the params with key <code>exercise</code>.
+</aside>
+
+<h1 id="machines">Machines</h1>
+
+<h2 id="machine-object">Machine Object</h2>
+
+<p>This is the JSON content of the returned training machine object</p>
+
+<h3 id="machine-attributes">machine attributes</h3>
 
 <table><thead>
 <tr>
@@ -595,10 +1013,223 @@ Any parameter from training program object
 </tr>
 <tr>
 <td>name</td>
+<td>Hash</td>
+<td>JSON Hash object of name locales</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Hash</td>
+<td>JSON Hash object of description locales</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Location</td>
+<td>Location object is a hash { floor: FLOOR_ID, X: X_COORDINATE, y: y_COORDINATE }</td>
+</tr>
+<tr>
+<td>providerLocationID</td>
 <td>String</td>
-<td>category for muscle group (e.g. leg, back, &hellip;)</td>
+<td>a returned value of the machine location that will be returned from the map provider</td>
+</tr>
+<tr>
+<td>photoURL</td>
+<td>String</td>
+<td>url of the training machine</td>
 </tr>
 </tbody></table>
+
+<h2 id="get-list-of-machines">GET: List of machines</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/machines'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">....</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>List all of all machines in this project.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/machines</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves all muscles in this project.</p>
+
+<h2 id="get-retrieve-a-certain-muscle">GET: Retrieve a certain muscle</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/machines/:machine_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieve machine by its id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/machines/:machine_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>machine_id</td>
+<td>String</td>
+<td>id of the selected machine</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-delete-machine">DELETE: DELETE Machine</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'DELETE'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/machines/:machine_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine :machine_id has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Delete machine by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>`DELETE http://api.venueSolutions.com/spa/v1/projects/:project_id/machines/:machine_id&rsquo;</p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>machine_id</td>
+<td>String</td>
+<td>id of the selected machine</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-update-machine">PUT: Update Machine</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'PUT'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/machines/:machine_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+PARAMS
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"3423422"</span>,
+      <span class="s2">"name"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"machine_1"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>,
+      <span class="s2">"description"</span>: <span class="s2">"name"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"description_1"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>,
+      <span class="s2">"providerLocationId"</span>: <span class="s2">"2fg453222222"</span>,
+      <span class="s2">"photoURL"</span>: <span class="s2">"http://www.images.com/image.png"</span>
+    <span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle__description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image2.png"</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Update or PUT machine by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://api.venueSolutions.com/spa/v1/projects/:project_id/machines/:machine_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>machine_id</td>
+<td>String</td>
+<td>id of the selected machine</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<p><code class="prettyprint">params = { &quot;machine&quot;: { &quot;id&quot;: &quot;23232323&quot;, &quot;name&quot;: { }, ...., &quot;photoURL&quot;: &quot;http://...&quot;}}</code></p>
+
+<aside class="notice">
+Embedded the new object in the params with key <code>machine</code>.
+</aside>
 
 <h1 id="muscles-group">Muscles Group</h1>
 
@@ -623,29 +1254,194 @@ Any parameter from training program object
 <tr>
 <td>name</td>
 <td>Hash</td>
-<td>JSON Hash object of name locales { en: &hellip;, ar: &hellip;, &hellip;.}</td>
-</tr>
-<tr>
-<td>description</td>
-<td>Hash</td>
-<td>JSON Hash object of name locales</td>
-</tr>
-<tr>
-<td>MusclesGroupCategoryId</td>
-<td>String</td>
-<td>the id of the category of this musclesGroup</td>
-</tr>
-<tr>
-<td>muscles</td>
-<td>Array</td>
-<td>Muscles objects</td>
-</tr>
-<tr>
-<td>images</td>
-<td>Arary</td>
-<td>Images objects</td>
+<td>localized names of muscle group (e.g. {&ldquo;en&rdquo;: &ldquo;leg&rdquo;, &hellip; } )</td>
 </tr>
 </tbody></table>
+
+<h2 id="get-list-of-muscle-groups">GET: List of muscle groups</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>List all of all project muscle groups.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves all muscle groups created.</p>
+
+<h2 id="get-retrieve-a-certain-muscle-group">GET: Retrieve a certain muscle group</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups/:muscle_group_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieve muscle group by its id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups/:muscle_group_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>muscle_group_id</td>
+<td>String</td>
+<td>id of the requested muscle group</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-delete-exercise">DELETE: DELETE Exercise</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'DELETE'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups/:muscle_group_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscle group 29622362 has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Delete training program by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups/:muscle_group_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>muscle_group_id</td>
+<td>String</td>
+<td>id of the requested muscle group</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-update-exercise">PUT: Update Exercise</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'PUT'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups/:muscle_group_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+PARAMS
+
+<span class="o">{</span> 
+  <span class="s2">"muscle_group"</span>:   <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"4fsds34333"</span>,
+    <span class="s2">"name"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"muscleGroup_1"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"muscle_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Update or PUT exercise by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://api.venueSolutions.com/spa/v1/projects/:project_id/muscleGroups/:muscle_group_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>muscle_group_id</td>
+<td>String</td>
+<td>id of the requested muscle group</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<p><code class="prettyprint">params = { &quot;muscle_group&quot;: { &quot;id&quot;: &quot;23232323&quot;, &quot;name&quot;: { }}}</code></p>
+
+<aside class="notice">
+Embedded the new object in the params with key <code>muscle_group</code>.
+</aside>
 
 <h1 id="muscle">Muscle</h1>
 
@@ -678,16 +1474,218 @@ Any parameter from training program object
 <td>JSON Hash object of name locales</td>
 </tr>
 <tr>
-<td>musclesGroups</td>
-<td>Array</td>
-<td>list of all musclesGroups, the current muscle related to.</td>
+<td>photoURL</td>
+<td>String</td>
+<td>url of the muscle image</td>
 </tr>
 <tr>
-<td>images</td>
-<td>Arary</td>
-<td>Images objects</td>
+<td>musclesGroup</td>
+<td>MusclesGroup</td>
+<td>MusclesGroup Object hash e.g. { &ldquo;id&rdquo;: &ldquo;value&rdquo;, &ldquo;name&rdquo;: { &ldquo;en&rdquo;: &ldquo;value1&rdquo;, &ldquo;ar&rdquo;: &ldquo;value2&rdquo;} }</td>
 </tr>
 </tbody></table>
+
+<h2 id="get-list-of-muscles">GET: List of muscles</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">....</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>List all of all muscles in this project.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves all muscles in this project.</p>
+
+<h2 id="get-retrieve-a-certain-muscle">GET: Retrieve a certain muscle</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles/:muscle_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieve muscle by its id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles/:muscle_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>muscle_id</td>
+<td>String</td>
+<td>id of the selected muscle</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-delete-muscle">DELETE: DELETE Muscle</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'DELETE'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles/:muscle_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscle :muscle_id has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Delete muscle by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>`DELETE http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles/:muscle_id&rsquo;</p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>muscle_id</td>
+<td>String</td>
+<td>id of the selected muscle</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-update-muscle">PUT: Update Muscle</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'PUT'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles/:muscle_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+PARAMS
+    <span class="o">{</span>
+        <span class="s2">"id"</span>: <span class="s2">"34dfge2342"</span>,
+        <span class="s2">"name"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"primeMoverMuscle_1"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>,
+        <span class="s2">"description"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"primeMoverMuscle__description"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>,
+        <span class="s2">"photoURL"</span>: <span class="s2">"http://www.images.com/image2.png"</span>,
+        <span class="s2">"muscleGroup"</span>: <span class="o">{</span>
+          <span class="s2">"id"</span>: <span class="s2">"4fsds34333"</span>,
+          <span class="s2">"name"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"muscleGroup_1"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle__description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image2.png"</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Update or PUT exercise by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://api.venueSolutions.com/spa/v1/projects/:project_id/muscles/:muscle_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>muscle_id</td>
+<td>String</td>
+<td>id of the selected muscle</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<p><code class="prettyprint">params = { &quot;muscle&quot;: { &quot;id&quot;: &quot;23232323&quot;, &quot;name&quot;: { }, ...., &quot;photoURL&quot;: &quot;http://...&quot;}}</code></p>
+
+<aside class="notice">
+Embedded the new object in the params with key <code>muscle</code>.
+</aside>
 
       </div>
       <div class="dark-box">
