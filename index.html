@@ -229,7 +229,7 @@
 
 <p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
 
-<h1 id="authentication">Authentication</h1>
+<h2 id="authentication">Authentication</h2>
 
 <p>Katara uses API keys to allow access to the API. You can register a new Katara&rsquo;s API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
@@ -244,6 +244,115 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
 <aside class="notice">
 You have to know your <code>project_id</code>.
 </aside>
+
+<h2 id="errors">Errors</h2>
+
+<blockquote>
+<p>The JSON response for a succeed request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Training program has been created successfully"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"training_program"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Program_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"intencity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exercises"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3df3234s3"</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Machine#1 Desctiption"</span><span class="w">
+      </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The JSON response for a failed request (data is null in all conditions):</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid access token"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>When an API request has been called, A response message will be returned. The response message will be in JSON format with 3 important keys. <code class="prettyprint">status</code> will be set to one of the 2 values <code class="prettyprint">success</code> OR <code class="prettyprint">fail</code>, 
+<code class="prettyprint">message</code> will contain the message body of the response status, and <code class="prettyprint">data</code> will contain the returned object after create or update.</p>
+
+<aside class="notice">
+All responses are in JSON format
+</aside>
+
+<p><code class="prettyprint">For succeed requests</code></p>
+
+<p><code class="prettyprint">HTTP Status: 200</code></p>
+
+<p>response body: {
+  &ldquo;status&rdquo;: &ldquo;success&rdquo;,
+  &ldquo;message&rdquo;: &ldquo;&rdquo;,
+  &ldquo;data&rdquo;: {</p>
+
+<p>}
+}</p>
+
+<table><thead>
+<tr>
+<th>HTTP Status</th>
+<th>status (String)</th>
+<th>message (String)</th>
+<th>data</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>success</td>
+<td>XXX has been created successfully</td>
+<td>XXX : {}</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">For failed requests</code></p>
+
+<table><thead>
+<tr>
+<th>HTTP Status</th>
+<th>status (String)</th>
+<th>message (String)</th>
+<th>data</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>fail</td>
+<td>Unauthorized - Invalid API key</td>
+<td>null</td>
+</tr>
+<tr>
+<td>403</td>
+<td>fail</td>
+<td>forbidden – You do not have access to that record</td>
+<td>null</td>
+</tr>
+<tr>
+<td>404</td>
+<td>fail</td>
+<td>Not Found</td>
+<td>null</td>
+</tr>
+<tr>
+<td>422</td>
+<td>fail</td>
+<td>Unprocessable Entity</td>
+<td>null</td>
+</tr>
+<tr>
+<td>500</td>
+<td>fail</td>
+<td>Server Error – We had a problem with our server. Try again later</td>
+<td>null</td>
+</tr>
+</tbody></table>
 
 <h1 id="training-programs">Training Programs</h1>
 
@@ -307,7 +416,8 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3df3234s3"</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Machine#1 Desctiption"</span><span class="w">
-    </span><span class="p">}],</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
       </span><span class="err">.........</span><span class="w">
   </span><span class="p">}</span><span class="w">
