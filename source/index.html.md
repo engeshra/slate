@@ -18,7 +18,7 @@ Welcome to the venueSolutions API! You can use our API to access Katara Project 
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+## Authentication
 
 Katara uses API keys to allow access to the API. You can register a new Katara's API key at our [developer portal](http://example.com/developers).
 
@@ -33,6 +33,75 @@ You must replace <code>YOUR_API_KEY</code> with your personal API key.
 <aside class="notice">
 You have to know your <code>project_id</code>.
 </aside>
+
+## Errors
+
+> The JSON response for a succeed request:
+
+```json
+{
+  "status": "success",
+  "message": "Training program has been created successfully",
+  "data": {
+    "training_program": {
+      "id": "3423422",
+      "name": {"en": "Program_1", "ar": "برنامج"},
+      "description": {"en": "Program_1_description", "ar": "برنامج"},
+      "intencity": "medium",
+      "exercises": [{
+        "id": "3df3234s3"
+        "name": "exercise#1",
+        "description": "Machine#1 Desctiption"
+      }]
+    }
+  }
+}
+```
+> The JSON response for a failed request (data is null in all conditions):
+
+```json
+{
+  "status": "fail",
+  "message": "Invalid access token",
+  "data": null
+}
+```
+When an API request has been called, A response message will be returned. The response message will be in JSON format with 3 important keys. `status` will be set to one of the 2 values `success` OR `fail`, 
+`message` will contain the message body of the response status, and `data` will contain the returned object after create or update.
+
+<aside class="notice">
+All responses are in JSON format
+</aside>
+
+`For succeed requests`
+
+`HTTP Status: 200`
+
+response body: {
+  "status": "success",
+  "message": "",
+  "data": {
+
+  }
+}
+
+HTTP Status | status (String) | message (String) | data
+--------- | --------   | ----------- | --------
+200 | success | XXX has been created successfully | XXX : {}
+
+
+
+`For failed requests`
+
+HTTP Status | status (String) | message (String) | data
+--------- | --------   | ----------- | --------
+401 | fail | Unauthorized - Invalid API key | null
+403 | fail | forbidden – You do not have access to that record | null
+404 | fail | Not Found | null
+422 | fail | Unprocessable Entity | null
+500| fail | Server Error – We had a problem with our server. Try again later | null
+
+
 
 # Training Programs
 
@@ -74,7 +143,8 @@ HEADER 'Authorization: Token token=YOUR_API_KEY'
       "id": "3df3234s3"
       "name": "exercise#1",
       "description": "Machine#1 Desctiption"
-    }],
+    }]
+  },
   {
       .........
   }
