@@ -252,6 +252,7 @@ You have to know your <code>project_id</code>.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Training program has been created successfully"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"training_program"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -273,6 +274,7 @@ You have to know your <code>project_id</code>.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fail"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid access token"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -290,6 +292,7 @@ All responses are in JSON format
 
 <p>response body: {
   &ldquo;status&rdquo;: &ldquo;success&rdquo;,
+  &ldquo;status_code&rdquo;: 200,
   &ldquo;message&rdquo;: &ldquo;&rdquo;,
   &ldquo;data&rdquo;: {</p>
 
@@ -300,6 +303,7 @@ All responses are in JSON format
 <tr>
 <th>HTTP Status</th>
 <th>status (String)</th>
+<th>status_code</th>
 <th>message (String)</th>
 <th>data</th>
 </tr>
@@ -307,6 +311,7 @@ All responses are in JSON format
 <tr>
 <td>200</td>
 <td>success</td>
+<td>200</td>
 <td>XXX has been created successfully</td>
 <td>XXX : {}</td>
 </tr>
@@ -318,6 +323,7 @@ All responses are in JSON format
 <tr>
 <th>HTTP Status</th>
 <th>status (String)</th>
+<th>status_code</th>
 <th>message (String)</th>
 <th>data</th>
 </tr>
@@ -325,30 +331,35 @@ All responses are in JSON format
 <tr>
 <td>401</td>
 <td>fail</td>
+<td>401</td>
 <td>Unauthorized - Invalid API key</td>
 <td>null</td>
 </tr>
 <tr>
 <td>403</td>
 <td>fail</td>
+<td>403</td>
 <td>forbidden – You do not have access to that record</td>
 <td>null</td>
 </tr>
 <tr>
 <td>404</td>
 <td>fail</td>
+<td>404</td>
 <td>Not Found</td>
 <td>null</td>
 </tr>
 <tr>
 <td>422</td>
 <td>fail</td>
+<td>422</td>
 <td>Unprocessable Entity</td>
 <td>null</td>
 </tr>
 <tr>
 <td>500</td>
 <td>fail</td>
+<td>500</td>
 <td>Server Error – We had a problem with our server. Try again later</td>
 <td>null</td>
 </tr>
@@ -778,6 +789,11 @@ This request mainly used from the mobile side to encapsulate all data in one obj
 <td>Hash</td>
 <td>embedded object of those keys: [type, reps]. Type key will be one of the 3 values [reps_with_weight, duration, reps_without_weight] and Reps key, its value is an array of this object {&ldquo;reps&rdquo;: Integer_value, &ldquo;weight&rdquo;: Integer_value}</td>
 </tr>
+<tr>
+<td>burnedCalories</td>
+<td>Integer</td>
+<td>the amount of calories that this exercise will burn</td>
+</tr>
 </tbody></table>
 
 <h2 id="get-list-of-exercise-for-a-certain-training-program">GET: List of exercise for a certain Training Program</h2>
@@ -849,7 +865,8 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
           </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">           
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"burnedCalories"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 <p>List all of all training program exercises.</p>
@@ -950,7 +967,8 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
           </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">           
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"burnedCalories"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -1146,6 +1164,11 @@ Embedded the new object in the params with key <code>exercise</code>.
 <td>String</td>
 <td>url of the training machine</td>
 </tr>
+<tr>
+<td>exercises</td>
+<td>Array</td>
+<td>list of exercise objects</td>
+</tr>
 </tbody></table>
 
 <h2 id="get-list-of-machines">GET: List of machines</h2>
@@ -1163,7 +1186,69 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
         </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
         </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"exercises"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3df3234s3"</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+          </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise#1 desctiption"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"برنامج"</span><span class="p">},</span><span class="w">
+          </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"machine"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3423422"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+          </span><span class="s2">"primeMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"secondaryMoverMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"stabilizerMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"coreMuscle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primeMoverMuscle_1_description"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"muscleGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fsds34333"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"muscleGroup_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"behavior"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reps_with_weight"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"repetitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">           
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w"> 
+          </span><span class="s2">"burnedCalories"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="err">....</span><span class="w">
       </span><span class="p">]</span><span class="w">
@@ -1207,7 +1292,8 @@ HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"machine_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
         </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">},</span><span class="w">
         </span><span class="s2">"providerLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2fg453222222"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="w">
+        </span><span class="s2">"photoURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.images.com/image.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exercises"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -1293,7 +1379,8 @@ PARAMS
       <span class="s2">"name"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"machine_1"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>,
       <span class="s2">"description"</span>: <span class="s2">"name"</span>: <span class="o">{</span><span class="s2">"en"</span>: <span class="s2">"description_1"</span>, <span class="s2">"ar"</span>: <span class="s2">""</span><span class="o">}</span>,
       <span class="s2">"providerLocationId"</span>: <span class="s2">"2fg453222222"</span>,
-      <span class="s2">"photoURL"</span>: <span class="s2">"http://www.images.com/image.png"</span>
+      <span class="s2">"photoURL"</span>: <span class="s2">"http://www.images.com/image.png"</span>,
+      <span class="s2">"exercises"</span> <span class="o">[</span>.....]
     <span class="o">}</span>
 </code></pre>
 <blockquote>
@@ -1341,7 +1428,7 @@ PARAMS
 Embedded the new object in the params with key <code>machine</code>.
 </aside>
 
-<h1 id="muscles-group">Muscles Group</h1>
+<h1 id="muscles-groups">Muscles Groups</h1>
 
 <h2 id="musclesgroup-object">MusclesGroup Object</h2>
 
@@ -1553,11 +1640,11 @@ PARAMS
 Embedded the new object in the params with key <code>muscle_group</code>.
 </aside>
 
-<h1 id="muscle">Muscle</h1>
+<h1 id="muscles">Muscles</h1>
 
 <h2 id="muscle-object">Muscle Object</h2>
 
-<p>This is the JSON content of the returned muscles group object</p>
+<p>This is the JSON content of the returned muscle object</p>
 
 <h3 id="muscle-attributes">muscle attributes</h3>
 
@@ -1796,6 +1883,412 @@ PARAMS
 <aside class="notice">
 Embedded the new object in the params with key <code>muscle</code>.
 </aside>
+
+<h1 id="user-activities">User Activities</h1>
+
+<h2 id="user-activity-object">User Activity Object</h2>
+
+<p>This is the JSON content of the returned user activity object</p>
+
+<h3 id="muscle-attributes">muscle attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>Training machine ID</td>
+</tr>
+<tr>
+<td>activity_id</td>
+<td>String</td>
+<td>the id of the activity</td>
+</tr>
+<tr>
+<td>activity_type</td>
+<td>String</td>
+<td>the type of the activity [&ldquo;training_program&rdquo;, &ldquo;exercise&rdquo;]</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>current activity status [started, finished, skipped]</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-list-of-activities">GET: List of activities</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+params <span class="o">{</span> <span class="s2">"user_id"</span>: logged_in_user_id <span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3425222343"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"training_program"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"started"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99754kjs3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">....</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>List all of all user activities.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities</code></p>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>String</td>
+<td>the logged in user id</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves all activities for logged in user.</p>
+
+<h2 id="get-retrieve-a-certain-activity">GET: Retrieve a certain activity</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99754kjs3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieve activity by its id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>activity_id</td>
+<td>String</td>
+<td>id of the selected activity</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-delete-activity">DELETE: DELETE activity</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'DELETE'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activity :activity_id has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Delete activity by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>`DELETE http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id&rsquo;</p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>activity_id</td>
+<td>String</td>
+<td>id of the selected activity</td>
+</tr>
+</tbody></table>
+
+<h2 id="put-update-activity">PUT: Update activity</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'PUT'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+PARAMS
+  <span class="o">{</span>
+    <span class="s2">"user_activity"</span> : <span class="o">{</span>
+        <span class="s2">"id"</span>: <span class="s2">"54dfge2342"</span>,
+        <span class="s2">"activity_id"</span>: <span class="s2">"99754kjs3"</span>,
+        <span class="s2">"activity_type"</span>: <span class="s2">"exercise"</span>,
+        <span class="s2">"status"</span>: <span class="s2">"finished"</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w"> 
+    </span><span class="s2">"user_activity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dfge2342"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99754kjs3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exercise"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Update activity by id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>project_id</td>
+<td>String</td>
+<td>Katra project id, you will get this id from katara user portal</td>
+</tr>
+<tr>
+<td>activity_id</td>
+<td>String</td>
+<td>id of the selected activity</td>
+</tr>
+</tbody></table>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<p><code class="prettyprint">params = { &quot;user_activity&quot;: { &quot;id&quot;: &quot;23232323&quot;, &quot;activity_id&quot;: &quot;242sdfs33&quot;, .... }</code></p>
+
+<aside class="notice">
+Embedded the new object in the params with key <code>user_activity</code>.
+</aside>
+
+<h1 id="user-statistics">User Statistics</h1>
+
+<h2 id="get-number-of-user-visits">GET: number of user visits</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_visits'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+params <span class="o">{</span> <span class="s2">"user_id"</span>: logged_in_user_id,
+         <span class="s2">"start_date"</span>: START_DATE,
+         <span class="s2">"end_date"</span>: END_DATE <span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"number_of_visits"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get the number of user visits</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_visits</code></p>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>String</td>
+<td>the logged in user id</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>Timestamp</td>
+<td>the start date for the required data</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>Timestamp</td>
+<td>the end date for the required data</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves the number of visits for logged in user.</p>
+
+<h2 id="get-statistics-for-exercises">GET: statistics for exercises</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_exercises_statistics'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+params <span class="o">{</span> <span class="s2">"user_id"</span>: logged_in_user_id,
+         <span class="s2">"start_date"</span>: START_DATE,
+         <span class="s2">"end_date"</span>: END_DATE <span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"number_of_started_exercises"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"number_of_finished_exercises"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"number_of_skipped_exercises"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get exercises statistics of logged in user </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_exercises_statistics</code></p>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>String</td>
+<td>the logged in user id</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>Timestamp</td>
+<td>the start date for the required data</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>Timestamp</td>
+<td>the end date for the required data</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves the current, completed, skipped exercises for logged in user.</p>
+
+<h2 id="get-statistics-for-burned-calories">GET: statistics for burned calories</h2>
+<pre class="highlight shell tab-shell"><code>TYPE <span class="s1">'GET'</span>
+
+URL <span class="s1">'http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_burned_calories'</span>
+
+HEADER <span class="s1">'Authorization: Token token=YOUR_API_KEY'</span>
+
+params <span class="o">{</span> <span class="s2">"user_id"</span>: logged_in_user_id,
+         <span class="s2">"start_date"</span>: START_DATE,
+         <span class="s2">"end_date"</span>: END_DATE <span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>The above Request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_burned_calories"</span><span class="p">:</span><span class="w"> </span><span class="mi">440</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"burned_calories"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"2017-01-20"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"00"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+            </span><span class="s2">"23"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get burned calories for logged in user</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_burned_calories</code></p>
+
+<h3 id="query-parameters">Query parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>String</td>
+<td>the logged in user id</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>Timestamp</td>
+<td>the start date for the required data</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>Timestamp</td>
+<td>the end date for the required data</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint retrieves total burned calories for logged in user.</p>
 
       </div>
       <div class="dark-box">
