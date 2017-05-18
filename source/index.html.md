@@ -41,6 +41,7 @@ You have to know your <code>project_id</code>.
 ```json
 {
   "status": "success",
+  "status_code": 200,
   "message": "Training program has been created successfully",
   "data": {
     "training_program": {
@@ -62,6 +63,7 @@ You have to know your <code>project_id</code>.
 ```json
 {
   "status": "fail",
+  "status_code": 401,
   "message": "Invalid access token",
   "data": null
 }
@@ -79,27 +81,28 @@ All responses are in JSON format
 
 response body: {
   "status": "success",
+  "status_code": 200,
   "message": "",
   "data": {
 
   }
 }
 
-HTTP Status | status (String) | message (String) | data
---------- | --------   | ----------- | --------
-200 | success | XXX has been created successfully | XXX : {}
+HTTP Status | status (String) | status_code | message (String) | data
+--------- | --------  | ------- | ----------- | --------
+200 | success | 200 | XXX has been created successfully | XXX : {}
 
 
 
 `For failed requests`
 
-HTTP Status | status (String) | message (String) | data
---------- | --------   | ----------- | --------
-401 | fail | Unauthorized - Invalid API key | null
-403 | fail | forbidden – You do not have access to that record | null
-404 | fail | Not Found | null
-422 | fail | Unprocessable Entity | null
-500| fail | Server Error – We had a problem with our server. Try again later | null
+HTTP Status | status (String) | status_code | message (String) | data
+--------- | --------  | ------  | ----------- | --------
+401 | fail | 401 | Unauthorized - Invalid API key | null
+403 | fail | 403 | forbidden – You do not have access to that record | null
+404 | fail | 404 | Not Found | null
+422 | fail | 422 | Unprocessable Entity | null
+500 | fail | 500 | Server Error – We had a problem with our server. Try again later | null
 
 
 
@@ -430,6 +433,7 @@ stabilizerMuscle | muscle | muscle objects
 coreMuscle | muscle | muscle objects 
 photoURL | String | url of the exercise image
 behavior | Hash | embedded object of those keys: [type, reps]. Type key will be one of the 3 values [reps_with_weight, duration, reps_without_weight] and Reps key, its value is an array of this object {"reps": Integer_value, "weight": Integer_value}
+burnedCalories | Integer | the amount of calories that this exercise will burn
 
 
 ## GET: List of exercise for a certain Training Program
@@ -504,7 +508,8 @@ HEADER 'Authorization: Token token=YOUR_API_KEY'
           "weight": 20           
         },
         "duration": 0
-      }
+      },
+      "burnedCalories": 250
     }]
 ```
 
@@ -598,7 +603,8 @@ HEADER 'Authorization: Token token=YOUR_API_KEY'
           "weight": 20           
         },
         "duration": 0
-      }
+      },
+      "burnedCalories": 250
     }
     
 ```
@@ -729,6 +735,7 @@ description | Hash | JSON Hash object of description locales
 Location | Location | Location object is a hash { floor: FLOOR_ID, X: X_COORDINATE, y: y_COORDINATE }
 providerLocationID | String | a returned value of the machine location that will be returned from the map provider
 photoURL | String | url of the training machine
+exercises | Array | list of exercise objects
 
 
 ## GET: List of machines
@@ -749,7 +756,69 @@ HEADER 'Authorization: Token token=YOUR_API_KEY'
         "name": {"en": "machine_1", "ar": ""},
         "description": "name": {"en": "description_1", "ar": ""},
         "providerLocationId": "2fg453222222",
-        "photoURL": "http://www.images.com/image.png"
+        "photoURL": "http://www.images.com/image.png", 
+        "exercises": [{
+          "id": "3df3234s3"
+          "name": {"en": "exercise#1", "ar": "برنامج"},
+          "description": {"en": "exercise#1 desctiption", "ar": "برنامج"},
+          "photoURL": "http://www.images.com/image.png",
+          "machine": {
+            "id": "3423422",
+            "name": {"en": "machine_1", "ar": ""},
+            "description": "name": {"en": "description_1", "ar": ""},
+            "providerLocationId": "2fg453222222",
+            "photoURL": "http://www.images.com/image.png"
+          }
+          "primeMoverMuscle": {
+            "id": "34dfge2342",
+            "name": {"en": "primeMoverMuscle_1", "ar": ""},
+            "description": {"en": "primeMoverMuscle_1_description", "ar": ""},
+            "photoURL": "http://www.images.com/image.png",
+            "muscleGroup": {
+              "id": "4fsds34333",
+              "name": {"en": "muscleGroup_1", "ar": ""}
+            }
+          },
+          "secondaryMoverMuscle": {
+            "id": "34dfge2342",
+            "name": {"en": "primeMoverMuscle_1", "ar": ""},
+            "description": {"en": "primeMoverMuscle_1_description", "ar": ""},
+            "photoURL": "http://www.images.com/image.png",
+            "muscleGroup": {
+              "id": "4fsds34333",
+              "name": {"en": "muscleGroup_1", "ar": ""}
+            }
+          },
+          "stabilizerMuscle": {
+            "id": "34dfge2342",
+            "name": {"en": "primeMoverMuscle_1", "ar": ""},
+            "description": {"en": "primeMoverMuscle_1_description", "ar": ""},
+            "photoURL": "http://www.images.com/image.png",
+            "muscleGroup": {
+              "id": "4fsds34333",
+              "name": {"en": "muscleGroup_1", "ar": ""}
+            }
+          },
+          "coreMuscle": {
+            "id": "34dfge2342",
+            "name": {"en": "primeMoverMuscle_1", "ar": ""},
+            "description": {"en": "primeMoverMuscle_1_description", "ar": ""},
+            "photoURL": "http://www.images.com/image.png",
+            "muscleGroup": {
+              "id": "4fsds34333",
+              "name": {"en": "muscleGroup_1", "ar": ""}
+            }
+          },
+          "behavior": {
+            "type": "reps_with_weight",
+            "repetitions": {
+              "count": 20,
+              "weight": 20           
+            },
+            "duration": 0
+          }, 
+          "burnedCalories": 200
+        }]
       },
       ....
       ]
@@ -790,7 +859,8 @@ HEADER 'Authorization: Token token=YOUR_API_KEY'
         "name": {"en": "machine_1", "ar": ""},
         "description": "name": {"en": "description_1", "ar": ""},
         "providerLocationId": "2fg453222222",
-        "photoURL": "http://www.images.com/image.png"
+        "photoURL": "http://www.images.com/image.png",
+        "exercises": [...]
       }
     
 ```
@@ -859,7 +929,8 @@ PARAMS
       "name": {"en": "machine_1", "ar": ""},
       "description": "name": {"en": "description_1", "ar": ""},
       "providerLocationId": "2fg453222222",
-      "photoURL": "http://www.images.com/image.png"
+      "photoURL": "http://www.images.com/image.png",
+      "exercises" [.....]
     }
 ```
 
@@ -898,7 +969,7 @@ Embedded the new object in the params with key <code>machine</code>.
 
 
 
-# Muscles Group
+# Muscles Groups
 
 ## MusclesGroup Object
 
@@ -1070,11 +1141,11 @@ Embedded the new object in the params with key <code>muscle_group</code>.
 </aside>
 
 
-# Muscle
+# Muscles
 
 ## Muscle Object
 
-This is the JSON content of the returned muscles group object
+This is the JSON content of the returned muscle object
 
 ### muscle attributes
 
@@ -1262,4 +1333,330 @@ Embedded the new object in the params with key <code>muscle</code>.
 </aside>
 
 
+
+# User Activities
+
+## User Activity Object
+
+This is the JSON content of the returned user activity object
+
+### muscle attributes
+
+Attribute | Type | Description
+--------- | --------   | -----------
+id | String | Training machine ID
+activity_id | String | the id of the activity
+activity_type | String | the type of the activity ["training_program", "exercise"]
+status | String | current activity status [started, finished, skipped]
+
+
+## GET: List of activities
+
+```shell
+TYPE 'GET'
+
+URL 'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities'
+
+HEADER 'Authorization: Token token=YOUR_API_KEY'
+
+params { "user_id": logged_in_user_id }
+```
+
+> The above Request returns JSON structured like this:
+
+```json
+      [{
+        "id": "34dfge2342",
+        "activity_id": "3425222343",
+        "activity_type": "training_program",
+        "status": "started"
+      },
+      {
+        "id": "54dfge2342",
+        "activity_id": "99754kjs3",
+        "activity_type": "exercise",
+        "status": "finished"
+      },
+      ....
+      ]
+```
+
+List all of all user activities.
+
+### HTTP Request
+
+`GET http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities`
+
+
+### Query parameters
+
+Parameter | Type | Description
+--------- | --------   | -----------
+user_id | String | the logged in user id
+
+
+This endpoint retrieves all activities for logged in user.
+
+
+## GET: Retrieve a certain activity
+
+```shell
+TYPE 'GET'
+
+URL 'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id'
+
+HEADER 'Authorization: Token token=YOUR_API_KEY'
+```
+
+> The above Request returns JSON structured like this:
+
+```json
+      {
+        "id": "54dfge2342",
+        "activity_id": "99754kjs3",
+        "activity_type": "exercise",
+        "status": "finished"
+      }
+    
+```
+
+Retrieve activity by its id.
+
+### HTTP Request
+
+`GET http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id`
+
+
+### URL parameters
+
+Parameter | Type | Description
+--------- | --------   | -----------
+project_id | String | Katra project id, you will get this id from katara user portal
+activity_id | String | id of the selected activity
+
+
+## DELETE: DELETE activity
+
+```shell
+TYPE 'DELETE'
+
+URL 'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id'
+
+HEADER 'Authorization: Token token=YOUR_API_KEY'
+
+```
+
+> The above Request returns JSON structured like this:
+
+```json
+{
+  "message": "activity :activity_id has been deleted."
+}
+```
+
+Delete activity by id.
+
+### HTTP Request
+
+`DELETE http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id'
+
+
+### URL parameters
+
+Parameter | Type | Description
+--------- | --------   | -----------
+project_id | String | Katra project id, you will get this id from katara user portal
+activity_id | String | id of the selected activity
+
+
+## PUT: Update activity
+
+```shell
+TYPE 'PUT'
+
+URL 'http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id'
+
+HEADER 'Authorization: Token token=YOUR_API_KEY'
+
+PARAMS
+  {
+    "user_activity" : {
+        "id": "54dfge2342",
+        "activity_id": "99754kjs3",
+        "activity_type": "exercise",
+        "status": "finished"
+      }
+  }
+```
+
+> The above Request returns JSON structured like this:
+
+```json
+  { 
+    "user_activity" : {
+        "id": "54dfge2342",
+        "activity_id": "99754kjs3",
+        "activity_type": "exercise",
+        "status": "finished"
+      }
+  }
+```
+
+Update activity by id.
+
+### HTTP Request
+
+`PUT http://api.venueSolutions.com/spa/v1/projects/:project_id/userActivities/:activity_id`
+
+
+### URL parameters
+
+Parameter | Type | Description
+--------- | --------   | -----------
+project_id | String | Katra project id, you will get this id from katara user portal
+activity_id | String | id of the selected activity
+
+### Query parameters
+
+`params = { "user_activity": { "id": "23232323", "activity_id": "242sdfs33", .... }`
+
+<aside class="notice">
+Embedded the new object in the params with key <code>user_activity</code>.
+</aside>
+
+
+
+# User Statistics
+
+
+## GET: number of user visits
+
+```shell
+TYPE 'GET'
+
+URL 'http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_visits'
+
+HEADER 'Authorization: Token token=YOUR_API_KEY'
+
+params { "user_id": logged_in_user_id,
+         "start_date": START_DATE,
+         "end_date": END_DATE }
+```
+
+> The above Request returns JSON structured like this:
+
+```json
+      {
+        "number_of_visits": 20
+      }
+```
+
+Get the number of user visits
+
+### HTTP Request
+
+`GET http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_visits`
+
+
+### Query parameters
+
+Parameter | Type | Description
+--------- | --------   | -----------
+user_id | String | the logged in user id
+start_date | Timestamp | the start date for the required data
+end_date | Timestamp | the end date for the required data
+
+
+This endpoint retrieves the number of visits for logged in user.
+
+
+## GET: statistics for exercises
+
+```shell
+TYPE 'GET'
+
+URL 'http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_exercises_statistics'
+
+HEADER 'Authorization: Token token=YOUR_API_KEY'
+
+params { "user_id": logged_in_user_id,
+         "start_date": START_DATE,
+         "end_date": END_DATE }
+```
+
+> The above Request returns JSON structured like this:
+
+```json
+      {
+        "number_of_started_exercises": 20,
+        "number_of_finished_exercises": 20,
+        "number_of_skipped_exercises": 10
+      }
+```
+
+Get exercises statistics of logged in user 
+
+### HTTP Request
+
+`GET http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_exercises_statistics`
+
+
+### Query parameters
+
+Parameter | Type | Description
+--------- | --------   | -----------
+user_id | String | the logged in user id
+start_date | Timestamp | the start date for the required data
+end_date | Timestamp | the end date for the required data
+
+
+This endpoint retrieves the current, completed, skipped exercises for logged in user.
+
+
+## GET: statistics for burned calories
+
+```shell
+TYPE 'GET'
+
+URL 'http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_burned_calories'
+
+HEADER 'Authorization: Token token=YOUR_API_KEY'
+
+params { "user_id": logged_in_user_id,
+         "start_date": START_DATE,
+         "end_date": END_DATE }
+```
+
+> The above Request returns JSON structured like this:
+
+```json
+      {
+        "total_burned_calories": 440,
+        "burned_calories": {
+          "2017-01-20": {
+            "00": 12,
+            ...
+            "23": 23
+          }
+        }
+      }
+```
+
+Get burned calories for logged in user
+
+### HTTP Request
+
+`GET http://api.venueSolutions.com/spa/v1/projects/:project_id/get_user_burned_calories`
+
+
+### Query parameters
+
+Parameter | Type | Description
+--------- | --------   | -----------
+user_id | String | the logged in user id
+start_date | Timestamp | the start date for the required data
+end_date | Timestamp | the end date for the required data
+
+
+This endpoint retrieves total burned calories for logged in user.
 
